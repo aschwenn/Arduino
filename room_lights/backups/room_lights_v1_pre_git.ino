@@ -10,7 +10,7 @@ void colorPan();
 // buttons
 #define PRIMARY_TOGGLE    3
 #define SECONDARY_TOGGLE  2
-#define MAX_OPTIONS       1
+#define MAX_OPTIONS       2
 #define TOGGLE_BUFFER     200 // must be this many ms between button presses to register
 
 // brightness
@@ -63,12 +63,10 @@ void setup() {
 }
 
 void loop() {
-  //setAll(0,0,0);
-  //if (primaryOption == 0) setAll(255,255,255);
-  //else if (primaryOption == 1) colorchain(floor(NUM_LEDS / 4));
-  //else if (primaryOption == 2) standardAudioReact();
-
-  colorchain(floor(NUM_LEDS / 4));
+  setAll(0,0,0);
+  if (primaryOption == 0) setAll(255,255,255);
+  else if (primaryOption == 1) colorchain(floor(NUM_LEDS / 4));
+  else if (primaryOption == 2) standardAudioReact();
 }
 
 /* MAIN DISPLAY FUNCTIONS
