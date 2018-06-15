@@ -153,6 +153,7 @@ void snake(){
   for (int i = 0; i < NUM_LEDS; i++){
     // iterate through all of the LEDs
     leds[i] = CRGB(colors[i][0], colors[i][1], colors[i][2]);
+    if (digitalRead(TOGGLE_PIN) == LOW) return;
   }
   FastLED.show();
 
