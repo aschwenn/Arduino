@@ -11,6 +11,9 @@
 #define DELAY_TIME  20
 #define INCREMENT   5 // must be a divisor of 255
 
+// toggle
+#define TOGGLE_PIN 2
+
 /* ------- GLOBALS ------ */
 CRGB leds[NUM_LEDS];
 
@@ -35,6 +38,7 @@ void setup() {
 
   // pin setup
   pinMode(LED_PIN, OUTPUT);
+  pinMode(TOGGLE_PIN, INPUT);
 
   // initialize colors
   setAll(255,255,255);
@@ -46,8 +50,10 @@ void setup() {
 }
 
 void loop() {
-  solidAllPan();
-  //snake();
+  if (digitalRead(TOGGLE_PIN) == LOW){
+    solidAllPan();
+  }
+  else snake();
 }
 
 void setAll(int r, int g, int b){
@@ -143,29 +149,19 @@ void initializeColors(){
 }
 
 void snake(){
-  while(true){
-    // set all of the colors
-    for (int i = 0; i < NUM_LEDS; i++){
-      // iterate through all of the LEDs
-      leds[i] = CRGB(colors[i][0], colors[i][1], colors[i][2]);
-      /* BUG TESTING
-      Serial.print("led ");
-      Serial.print(i);
-      Serial.print(": r ");
-      Serial.print(colors[i][0]);
-      Serial.print(", g ");
-      Serial.print(colors[i][1]);
-      Serial.print(", b ");
-      Serial.println(colors[i][2]);
-      */
-    }
-    FastLED.show();
-
-    // update all of the colors
-    for (int i = 0; i < NUM_LEDS; i++){
-      colorPan2(colors[i]);
-    }
+  // set all of the colors
+  for (int i = 0; i < NUM_LEDS; i++){
+    // iterate through all of the LEDs
+    leds[i] = CRGB(colors[i][0], colors[i][1], colors[i][2]);
   }
+  FastLED.show();
+
+  // update all of the colors
+  for (int i = 0; i < NUM_LEDS; i++){
+    colorPan2(colors[i]);
+  }
+
+  delay(5);
 }
 
 
