@@ -2,8 +2,8 @@
 
 /* ------ CONFIGURATION SETTINGS ------ */
 // LED Strip
-#define LED_PIN     6
-#define NUM_LEDS    72
+#define LED_PIN     5
+#define NUM_LEDS    64
 #define LED_TYPE    WS2812
 #define BRIGHTNESS  100 // 0-255 value indicating scaled brightness
 
@@ -12,7 +12,8 @@
 #define INCREMENT   5 // must be a divisor of 255
 
 // toggle
-#define TOGGLE_PIN 2
+#define TOGGLE_PIN 6
+
 
 /* ------- GLOBALS ------ */
 CRGB leds[NUM_LEDS];
