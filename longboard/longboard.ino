@@ -2,7 +2,7 @@
 
 /* ------ CONFIGURATION SETTINGS ------ */
 // LED Strip
-#define LED_PIN     5
+#define LED_PIN     3
 #define NUM_LEDS    64
 #define LED_TYPE    WS2812
 #define BRIGHTNESS  100 // 0-255 value indicating scaled brightness
@@ -12,7 +12,7 @@
 #define INCREMENT   5 // must be a divisor of 255
 
 // toggle
-#define TOGGLE_PIN 6
+#define TOGGLE_PIN 0
 
 
 /* ------- GLOBALS ------ */
@@ -51,10 +51,17 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(TOGGLE_PIN) == LOW){
-    solidAllPan();
+  if (analogRead(TOGGLE_PIN) < 880){
+    while(1){
+      solidAllPan();
+    }
   }
-  else snake();
+  else{
+    while(1){
+      snake();
+    }k
+  }
+  //Serial.println(analogRead(TOGGLE_PIN));
 }
 
 void setAll(int r, int g, int b){
