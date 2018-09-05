@@ -6,3 +6,6 @@ This was a program that I wrote to accompany an LED cube my team built for the T
 
 ### Room Programmable Lights (room_lights_v1.ino)
 Current working project, using addressable RGB LEDs and creating a controller interface to create ambient and party lighting for a living room.
+
+### Longboard (longboard.ino)
+Animations for lights affixed to the underside of my longboard, powered by batteries and controlled by a power switch and a toggle switch to change between two different animations.
