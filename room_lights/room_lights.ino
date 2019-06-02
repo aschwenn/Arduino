@@ -38,10 +38,10 @@ void loop() {
   
 }
 
-/* Set all pins on a wall to a certain color
- * Inputs:
- *  r, g, b (0-255 RGB values)
- *  wall (0, 1, 2, or 3)
+/*  Set all pins on a wall to a certain color
+ *  Inputs:
+ *    r, g, b (0-255 RGB values)
+ *    wall (0, 1, 2, or 3)
  */
 void setAll(int r, int g, int b, byte wall){
   int startRange = 0;
@@ -53,4 +53,28 @@ void setAll(int r, int g, int b, byte wall){
     leds[i] = CRGB(r,g,b);
   }
   FastLED.show();
+}
+
+/*  Reads control pot to see which one of 11 settings is currently selected
+ */
+int controlRead(){
+  int err = 39;
+  int in = 0;
+  int sampleSize = 10;
+  int values[] = {1023,980,858,735,621,510,396,278,156,35};
+
+  // read selector pin
+  for(int i=0; i<sampleSize; i++){
+    in += analogRead(selector);
+  }
+  in /= sampleSize;
+  //Serial.println(in);
+
+  // determine which mode is selected
+  for(int j=0; j<10; j++){
+    if((in > (values[j] - err)) && (in < (values[j] + err))){
+      return j;
+    }
+  }
+  return -1;
 }
